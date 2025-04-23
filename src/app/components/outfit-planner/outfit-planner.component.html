@@ -1,0 +1,15 @@
+<div class="outfit-list">
+  <h2>Saved Outfits</h2>
+  <div *ngFor="let outfit of outfits; let i = index" class="outfit-card">
+    <h3>{{ outfit.name }}</h3>
+    <div class="clothing-grid">
+      <div *ngFor="let item of outfit.items" class="clothing-item">
+        <img *ngIf="item.imageUrl" [src]="'http://localhost:3000' + item.imageUrl" width="100" />
+        <p>{{ item.name }}</p>
+      </div>
+    </div>
+
+    <button (click)="makePublic(i)" class="public-btn">🌐 Make Public</button>
+    <button (click)="deleteOutfit(i)" class="delete-outfit-btn">🗑 Delete Outfit</button>
+  </div>
+</div>

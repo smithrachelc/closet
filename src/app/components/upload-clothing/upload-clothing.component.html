@@ -1,0 +1,46 @@
+<div class="upload-container">
+  <h2>Upload Clothing</h2>
+  <p>Add new clothing items to your closet.</p>
+
+  <div class="upload-card">
+    <form (submit)="uploadClothing(); $event.preventDefault()">
+      <label for="name">Clothing Name</label>
+      <input
+        id="name"
+        type="text"
+        [(ngModel)]="clothingName"
+        name="clothingName"
+        placeholder="Enter clothing name"
+        required
+      />
+
+      <label for="category">Category</label>
+      <select
+        id="category"
+        [(ngModel)]="clothingCategory"
+        name="clothingCategory"
+        required
+      >
+        <option value="" disabled selected>Select category</option>
+        <option *ngFor="let category of categories" [value]="category">{{ category }}</option>
+      </select>
+
+      <label for="image">Upload Image</label>
+      <input
+        id="image"
+        type="file"
+        (change)="onImageSelected($event)"
+        accept="image/*"
+      />
+
+      <div *ngIf="imageDataUrl" class="image-preview">
+        <img [src]="imageDataUrl" alt="Preview" width="100" />
+      </div>
+
+      <button type="submit" class="upload-btn">Upload Clothing</button>
+    </form>
+  </div>
+
+  <p class="success-message" *ngIf="successMessage">{{ successMessage }}</p>
+  <p class="error-message" *ngIf="errorMessage">{{ errorMessage }}</p>
+</div>

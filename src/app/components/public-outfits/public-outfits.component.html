@@ -1,0 +1,12 @@
+<div class="public-outfits-container">
+  <h2>Public Outfits</h2>
+  <div *ngFor="let outfit of publicOutfits" class="outfit-card">
+    <h3>{{ outfit.name }}</h3>
+    <div class="clothing-grid">
+      <div *ngFor="let item of outfit.items" class="clothing-item">
+        <img *ngIf="item.imageUrl" [src]="'http://localhost:3000' + item.imageUrl" width="100" />
+        <p>{{ item.name }}</p>
+      </div>
+    </div>
+  </div>
+</div>

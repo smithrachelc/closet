@@ -1,0 +1,28 @@
+<div class="category-buttons">
+  <button *ngFor="let category of categories" (click)="navigateTo(category)">
+    {{ category }}
+  </button>
+</div>
+
+<div class="items-container">
+  <h3>Items</h3>
+  <div class="clothing-grid">
+    <div *ngFor="let item of filteredItems" class="clothing-item">
+      <img *ngIf="item.imageUrl" [src]="'http://localhost:3000' + item.imageUrl" width="100" />
+      <p>{{ item.name }}</p>
+      <button class="add-btn" (click)="addToOutfit(item)">Add</button>
+    </div>
+  </div>
+</div>
+
+<div class="outfit-creation" *ngIf="selectedOutfit.length > 0">
+  <h3>Create an Outfit</h3>
+  <input type="text" [(ngModel)]="outfitName" placeholder="Outfit name" class="outfit-input" />
+  <div class="selected-items">
+    <div *ngFor="let item of selectedOutfit" class="selected-item">
+      <p>{{ item.name }}</p>
+    </div>
+  </div>
+  <button class="save-btn" (click)="saveOutfit()">💾 Save</button>
+  <button class="cancel-btn" (click)="cancelOutfit()">Cancel</button>
+</div>

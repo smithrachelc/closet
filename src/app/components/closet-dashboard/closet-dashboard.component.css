@@ -1,0 +1,374 @@
+/*.categories {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-bottom: 20px;
+}
+
+.categories button {
+    background: #ff66b2;
+    color: white;
+    padding: 10px;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+    font-weight: bold;
+}
+
+.categories button:hover {
+    background: #e6004c;
+}
+
+ul li {
+    cursor: pointer;
+    background: white;
+    padding: 10px;
+    margin: 5px;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+ul li:hover {
+    background: #f4f4f4;
+}
+*/
+/* General Layout */
+/*.dashboard-container {
+    max-width: 800px;
+    margin: auto;
+    padding: 20px;
+    background: #fff;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+  }
+  
+   Category Buttons 
+  .category-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
+    margin-bottom: 20px;
+  }
+  
+  .category-buttons button {
+    background: #ff66b2;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: 0.3s ease;
+  }
+  
+  .category-buttons button:hover {
+    background: #e6004c;
+  }
+  
+   Clothing Items 
+  .items-container {
+    background: #ffe6e6;
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  }
+  
+  .clothing-list {
+    list-style: none;
+    padding: 0;
+  }
+  
+  .clothing-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: white;
+    padding: 10px;
+    margin: 5px 0;
+    border-radius: 5px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  }
+  
+  .add-btn {
+    background: #007bff;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: 0.3s ease;
+  }
+  
+  .add-btn:hover {
+    background: #0056b3;
+  }
+  
+   Outfit Creation Section 
+  .outfit-creation {
+    margin-top: 20px;
+    background: #fff0f5;
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  }
+  
+  .outfit-input {
+    width: 80%;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin: 10px 0;
+  }
+  
+  .selected-items {
+    list-style: none;
+    padding: 0;
+  }
+  
+  .selected-items li {
+    background: white;
+    padding: 8px;
+    margin: 5px 0;
+    border-radius: 5px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  }
+  
+   Save Button 
+  .save-btn {
+    background: #28a745;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: 0.3s ease;
+  }
+  
+  .save-btn:hover {
+    background: #218838;
+  } */
+   /* General Layout */
+/* General Page Styling */
+/* General Page Styling */
+/* General Page Styling */
+/* Add Button (Pink & Smaller) */
+/* General Page Styling */
+body {
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    background-color: #ffe6e6;
+    color: #333;
+}
+
+/* Hero Section */
+.hero {
+    background: linear-gradient(to right, #ff66b2, #b300b3);
+    height: 40vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    text-align: center;
+}
+
+.hero h1 {
+    font-size: 3rem;
+    font-weight: bold;
+}
+
+.hero p {
+    font-size: 1.5rem;
+    margin-top: 10px;
+}
+
+/* Dashboard Container */
+.dashboard-container {
+    max-width: 800px;
+    margin: auto;
+    padding: 30px;
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    margin-top: -40px;
+}
+
+/* Category Buttons */
+.category-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 15px;
+    margin-bottom: 20px;
+}
+
+.category-buttons button {
+    background: #ff66b2;
+    color: white;
+    border: none;
+    padding: 12px 20px;
+    border-radius: 25px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: 0.3s ease;
+    font-weight: bold;
+}
+
+.category-buttons button:hover {
+    background: #e6004c;
+    transform: scale(1.05);
+}
+
+/* Clothing Items Section */
+.items-container {
+    background: #ffe6e6;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    margin-top: 20px;
+}
+
+/* Clothing Grid */
+.clothing-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    gap: 15px;
+    justify-items: center;
+}
+
+/* Individual Clothing Items */
+.clothing-item {
+    background: white;
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+/* Add Button (Smaller & Pink) */
+.add-btn {
+    background: #ff66b2;
+    color: white;
+    border: none;
+    padding: 6px 10px; /* Smaller button */
+    border-radius: 15px;
+    cursor: pointer;
+    transition: 0.3s ease;
+    font-size: 14px;
+    font-weight: bold;
+    margin-top: 6px;
+}
+
+.add-btn:hover {
+    background: #e6004c;
+    transform: scale(1.05);
+}
+
+/* Outfit Creation Section */
+.outfit-creation {
+    margin-top: 20px;
+    background: #fff0f5;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+/* Outfit Name Input */
+.outfit-input {
+    width: 80%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin: 10px 0;
+    text-align: center;
+}
+
+/* Selected Items */
+.selected-items {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
+}
+
+.selected-item {
+    background: white;
+    padding: 10px;
+    border-radius: 5px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+/* Save Outfit Button (Smaller & Pink) */
+.save-btn {
+    background: #ff66b2;
+    color: white;
+    border: none;
+    padding: 8px 14px; /* Smaller button */
+    border-radius: 15px;
+    cursor: pointer;
+    transition: 0.3s ease;
+    font-size: 14px;
+    font-weight: bold;
+    margin-top: 10px;
+}
+
+.save-btn:hover {
+    background: #e6004c;
+    transform: scale(1.05);
+}
+.delete-btn {
+    background: #ff66b2;
+    color: white;
+    border: none;
+    padding: 6px 10px; /* Smaller button */
+    border-radius: 15px;
+    cursor: pointer;
+    transition: 0.3s ease;
+    font-size: 14px;
+    font-weight: bold;
+    margin-top: 6px;
+}
+
+.delete-btn:hover {
+    background: #e6004c;
+    transform: scale(1.05);
+}
+.clothing-img {
+  width: 70px;
+  height: 70px;
+  object-fit: cover;
+  border-radius: 6px;
+  margin-bottom: 8px;
+}
+.action-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 15px;
+}
+
+.cancel-btn {
+  background: #ff66b2;
+    color: white;
+    border: none;
+    padding: 8px 14px; /* Smaller button */
+    border-radius: 15px;
+    cursor: pointer;
+    transition: 0.3s ease;
+    font-size: 14px;
+    font-weight: bold;
+    margin-top: 10px;
+}
+
+.cancel-btn:hover {
+  background: #999;
+  transform: scale(1.05);
+}
