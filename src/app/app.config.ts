@@ -7,9 +7,7 @@ export const appConfig = {
   providers: [
     provideClientHydration(),
     importProvidersFrom(
-      RouterModule.forRoot(appRoutes, {
-        initialNavigation: 'enabledBlocking'
-      })
+      RouterModule.forRoot(appRoutes, { initialNavigation: 'enabledBlocking' })
     )
   ]
 };

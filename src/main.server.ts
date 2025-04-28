@@ -12,17 +12,12 @@ export function app(): express.Application {
   const browserDist = join(process.cwd(), 'dist/closet-cleanup/browser');
   const template = readFileSync(join(browserDist, 'index.html'), 'utf8');
 
-  // Serve static assets
   server.get('*.*', express.static(browserDist, { maxAge: '1y' }));
 
-  // SSR: render your standalone AppComponent
   server.get('*', async (req: Request, res: Response) => {
     const html = await renderApplication(
       () => bootstrapApplication(AppComponent, appConfig),
-      {
-        document: template,
-        url: req.url
-      }
+      { document: template, url: req.url }
     );
     res.send(html);
   });
@@ -30,10 +25,8 @@ export function app(): express.Application {
   return server;
 }
 
-// Local debugging: `ts-node src/main.server.ts`
 if (require.main === module) {
-  const portEnv = process.env['PORT'];
-  const port = portEnv ? parseInt(portEnv, 10) : 4000;
+  const port = process.env['PORT'] ? +process.env['PORT']! : 4000;
   app().listen(port, () =>
     console.log(`SSR server listening on http://localhost:${port}`)
   );
