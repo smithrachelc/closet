@@ -4,24 +4,11 @@
     {
       "src": "package.json",
       "use": "@vercel/static-build",
-      "config": {
-        "distDir": "dist/closet-cleanup/browser",
-        "buildCommand": "npm run build:ssr"
-      }
-    },
-    {
-      "src": "dist/closet-cleanup/server/main.js",
-      "use": "@vercel/node"
+      "config": { "distDir": "dist/closet-cleanup/browser" }
     }
   ],
   "routes": [
-    {
-      "src": "/(.*\\.(?:js|css|json|png|jpg|jpeg|svg|ico|map))",
-      "dest": "/dist/closet-cleanup/browser/$1"
-    },
-    {
-      "src": "/(.*)",
-      "dest": "/dist/closet-cleanup/server/main.js"
-    }
+    { "handle": "filesystem" },
+    { "src": "/.*", "dest": "/index.html" }
   ]
 }
