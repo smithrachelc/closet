@@ -4,13 +4,14 @@
     {
       "src": "package.json",
       "use": "@vercel/static-build",
-      "config": { "distDir": "dist/closet-cleanup/browser" }
-    },
-    { "src": "server.js", "use": "@vercel/node" }
+      "config": {
+        "distDir": "dist/closet-cleanup/browser"
+      }
+    }
   ],
-  "routes": [
-    { "src": "/assets/(.*)", "dest": "/dist/closet-cleanup/browser/assets/$1" },
-    { "src": "/(.*\\.(?:js|css|json|svg|ico|png|jpg))", "dest": "/dist/closet-cleanup/browser/$1" },
-    { "src": "/.*", "dest": "/server.js" }
-  ]
+  "rewrites": [
+    { "source": "/(.*)", "destination": "/index.html" }
+  ],
+  "cleanUrls": true,
+  "trailingSlash": false
 }

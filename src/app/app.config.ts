@@ -1,13 +1,11 @@
+import { ApplicationConfig } from '@angular/core';
+import { provideRouter, withComponentInputBinding } from '@angular/router';
 import { provideClientHydration } from '@angular/platform-browser';
-import { importProvidersFrom } from '@angular/core';
-import { RouterModule } from '@angular/router';
 import { appRoutes } from './app.routes';
 
-export const appConfig = {
+export const appConfig: ApplicationConfig = {
   providers: [
     provideClientHydration(),
-    importProvidersFrom(
-      RouterModule.forRoot(appRoutes, { initialNavigation: 'enabledBlocking' })
-    )
+    provideRouter(appRoutes, withComponentInputBinding())
   ]
 };
