@@ -10,13 +10,13 @@ import { SignupComponent } from './components/signup/signup.component';
 
 export const appRoutes: Routes = [
   { path: '', component: HomeComponent },
-  { path: 'dashboard', component: ClosetDashboardComponent },
-  { path: 'dashboard/:category', component: ClosetDashboardComponent },
-  { path: 'outfit-planner', component: OutfitPlannerComponent },
-  { path: 'public-outfits', component: PublicOutfitsComponent },
-  { path: 'admin', component: AdminPanelComponent },
-  { path: 'upload-clothing', component: UploadClothingComponent },
-  { path: 'login', component: LoginComponent },
-  { path: 'signup', component: SignupComponent },
+  { path: '/dashboard', component: ClosetDashboardComponent },
+  { path: '/dashboard/:category', component: ClosetDashboardComponent },
+  { path: '/outfit-planner', component: OutfitPlannerComponent },
+  { path: '/public-outfits', component: PublicOutfitsComponent },
+  { path: '/admin', component: AdminPanelComponent },
+  { path: '/upload-clothing', component: UploadClothingComponent },
+  { path: '/login', component: LoginComponent },
+  { path: '/signup', component: SignupComponent },
   { path: '**', redirectTo: '' }
 ];
