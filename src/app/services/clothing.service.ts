@@ -1,20 +1,28 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { environment } from '../../environments/environment';
 import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ClothingService {
-  private apiUrl = 'http://localhost:3000/api/clothingitems';
+  private base = `${environment.apiUrl}/clothing`;
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) { }
 
-  getClothingItems(): Observable<any[]> {
-    return this.http.get<any[]>(this.apiUrl);
+  /** Used by ClosetDashboardComponent */
+  getClothingItems(category?: string): Observable<any[]> {
+    // if a category is passed, call /category/:category
+    if (category) {
+      return this.http.get<any[]>(`${this.base}/category/${category}`);
+    }
+    // otherwise list all
+    return this.http.get<any[]>(`${this.base}/all`);
   }
 
+  /** Used by UploadClothingComponent */
   addClothingItem(formData: FormData): Observable<any> {
-    return this.http.post<any>(this.apiUrl, formData);
+    return this.http.post<any>(`${this.base}/upload`, formData);
   }
 }

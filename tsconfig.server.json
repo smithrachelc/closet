@@ -1,10 +1,17 @@
+// tsconfig.server.json
 {
   "extends": "./tsconfig.json",
   "compilerOptions": {
-    "outDir": "./dist/out-tsc/server",
+    "outDir": "./dist/closet-cleanup/server",
     "module": "commonjs",
-    "types": ["node"]
+    "lib": ["es2020"],           // ← no "dom" here
+    "types": ["node", "express"] // ← load both Node & Express defs
   },
-  "files": ["src/main.server.ts"],
-  "exclude": ["src/**/*.spec.ts"]
+  "include": [
+    "src/main.server.ts",
+    "src/server.ts"
+  ],
+  "angularCompilerOptions": {
+    "entryModule": "./src/app/app.server.module#AppServerModule"
+  }
 }

@@ -14,7 +14,11 @@
   "routes": [
     {
       "src": "/(.*\\.(?:js|css|json|png|jpg|jpeg|svg|ico|map))",
-      "dest": "/dist/closet-cleanup/browser/$1"
+      "dest": "dist/closet-cleanup/browser/$1"
+    },
+    {
+      "src": "/api/(.*)",
+      "dest": "src/server.ts"
     },
     {
       "src": "/(.*)",

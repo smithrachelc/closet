@@ -1,9 +1,7 @@
-/***************************************************************************************************
- * BROWSER POLYFILLS
- * This file is loaded before your app. You can add polyfills as needed.
- ***************************************************************************************************/
-import 'zone.js';  // Included with Angular CLI.
+// Import zone.js for Angular
+import 'zone.js';
 
-/***************************************************************************************************
- * APPLICATION IMPORTS
- ***************************************************************************************************/
+// Remove these lines if core-js is not installed
+// import 'core-js/es/reflect';
+// import 'core-js/stable/reflect';
+// import 'core-js/features/reflect';

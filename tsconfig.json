@@ -10,8 +10,22 @@
     "esModuleInterop": true,
     "moduleResolution": "node",
     "module": "es2020",
-    "target": "es2020",
+    "target": "ES2022",
     "typeRoots": ["node_modules/@types"],
-    "lib": ["es2020", "dom"]
+    "lib": ["es2020", "dom"],
+    "types": ["node"]
+  },
+  "files": [
+    "src/main.ts",
+    "src/polyfills.ts"
+  ],
+  "include": [
+    "src/**/*.ts"
+  ],
+  "angularCompilerOptions": {
+    "enableI18nLegacyMessageIdFormat": false,
+    "strictInjectionParameters": true,
+    "strictInputAccessModifiers": true,
+    "strictTemplates": true
   }
 }
