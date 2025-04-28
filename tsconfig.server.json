@@ -1,15 +1,13 @@
 {
   "extends": "./tsconfig.json",
   "compilerOptions": {
-    "outDir": "./dist/closet-cleanup/server",
+    "outDir": "./dist/server",
     "module": "commonjs",
-    "types": ["node", "express"]
+    "types": ["node"],
+    "skipLibCheck": true
   },
   "include": [
-    "src/main.server.ts",
-    "src/server.ts"
-  ],
-  "angularCompilerOptions": {
-    "entryModule": "./src/app/app.server.module#AppServerModule"
-  }
+    "server.ts",
+    "src/main.server.ts"
+  ]
 }

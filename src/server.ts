@@ -1,8 +1,7 @@
-// src/server.ts
+// server.ts
 // ──────────────────────────────────────────────────────────────────────────────
-// Disable TypeScript type‐checking for this file so VS Code won’t try to
-// interpret `res.status` as a number (DOM/Fetch `Response`) instead of
-// Express’s `Response` with `.status()` and `.json()`.
+// Disable TS checking so Express’s runtime types (res.status()/res.json())
+// are used instead of any DOM/Fetch `Response` collision.
 // ──────────────────────────────────────────────────────────────────────────────
 // @ts-nocheck
 
@@ -12,77 +11,73 @@ import express from 'express';
 import mongoose from 'mongoose';
 import multer from 'multer';
 
-// Note the “.js” extension so Vercel’s ESM loader can find it
-import { app as ssrApp } from './main.server.js';
+// ← Import your SSR app (compiled via tsconfig.server.json into dist/server)
+//    Note the “.js” so Node’s ES‐module loader can find it.
+import { app as ssrApp } from './dist/server/main.server.js';
 
 // Load environment variables
-dotenv.config({
-  // If your .env is in the project root, you can drop the `path` option.
-  path: path.resolve(__dirname, '../.env'),
-});
+dotenv.config();
 
-// Ensure we have a Mongo URI
+// Connect to MongoDB Atlas
 const mongoUri = process.env.MONGODB_URI;
 if (!mongoUri) {
   console.error('❌ MONGODB_URI not set');
   process.exit(1);
 }
-
-// Connect to MongoDB Atlas
 mongoose
   .connect(mongoUri)
   .then(() => console.log('✅ Connected to MongoDB Atlas'))
-  .catch(err => {
+  .catch((err) => {
     console.error('❌ MongoDB connection error', err);
     process.exit(1);
   });
 
-// Create the Express app and Multer instance
+// Express + Multer setup
 const server = express();
 const upload = multer();
-
-// Middleware: parse JSON + URL‐encoded bodies
 server.use(express.json());
 server.use(express.urlencoded({ extended: true }));
 
-// POST /api/upload-clothing
+// API endpoint
 server.post(
   '/api/upload-clothing',
   upload.single('image'),
   async (req, res) => {
     try {
       if (!req.file) {
-        return res.status(400).json({ error: 'No file uploaded' });
+        return res
+          .status(400)
+          .json({ error: 'No file uploaded' });
       }
-
-      // Replace with your actual Mongoose model name
       const ClothingModel = mongoose.model('ClothingItem');
-
       const doc = await ClothingModel.create({
-        filename: req.file.filename || 'unknown',
-        originalName: req.file.originalname || 'unknown',
-        // …other fields as needed
+        filename: req.file.filename ?? 'unknown',
+        originalName:
+          req.file.originalname ?? 'unknown',
       });
-
       return res.json(doc);
-    } catch (e) {
-      return res.status(500).json({ error: e.message });
+    } catch (e: any) {
+      return res
+        .status(500)
+        .json({ error: e.message });
     }
   }
 );
 
-// Mount Angular Universal SSR handler
+// Mount SSR
 server.use(ssrApp());
 
-// If run directly (local dev), start an HTTP server
+// Local‐dev listener
 if (require.main === module) {
-  const port = parseInt(process.env.PORT || '4000', 10);
-  server.listen(port, () => {
-    console.log(`🚀 SSR + API server listening on http://localhost:${port}`);
-  });
+  const port = Number(process.env.PORT || '4000');
+  server.listen(port, () =>
+    console.log(
+      `🚀 Server listening on http://localhost:${port}`
+    )
+  );
 }
 
-// Vercel serverless function export
+// Vercel serverless handler
 export default function handler(req, res) {
   server(req, res);
 }

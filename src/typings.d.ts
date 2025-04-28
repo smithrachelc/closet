@@ -10,3 +10,5 @@ declare module 'util';
 declare module 'os';
 declare module 'zlib';
 declare module 'express';
+// src/typings.d.ts
+declare module '@nguniversal/express-engine';
