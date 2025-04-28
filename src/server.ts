@@ -1,6 +1,8 @@
 // src/server.ts
 // ──────────────────────────────────────────────────────────────────────────────
-// Disable TS checking in this file so we never pull in the DOM “Response” type.
+// Disable TypeScript type‐checking for this file so VS Code won’t try to
+// interpret `res.status` as a number (DOM/Fetch `Response`) instead of
+// Express’s `Response` with `.status()` and `.json()`.
 // ──────────────────────────────────────────────────────────────────────────────
 // @ts-nocheck
 
@@ -10,12 +12,13 @@ import express from 'express';
 import mongoose from 'mongoose';
 import multer from 'multer';
 
-import { app as ssrApp } from './main.server';
+// Note the “.js” extension so Vercel’s ESM loader can find it
+import { app as ssrApp } from './main.server.js';
 
-// Load environment variables from .env
+// Load environment variables
 dotenv.config({
-  // If your .env lives somewhere else, adjust the path accordingly:
-  // path: path.resolve(__dirname, '../.env'),
+  // If your .env is in the project root, you can drop the `path` option.
+  path: path.resolve(__dirname, '../.env'),
 });
 
 // Ensure we have a Mongo URI
@@ -25,19 +28,20 @@ if (!mongoUri) {
   process.exit(1);
 }
 
-// Connect to MongoDB
-mongoose.connect(mongoUri)
+// Connect to MongoDB Atlas
+mongoose
+  .connect(mongoUri)
   .then(() => console.log('✅ Connected to MongoDB Atlas'))
   .catch(err => {
     console.error('❌ MongoDB connection error', err);
     process.exit(1);
   });
 
-// Create Express app + multer
+// Create the Express app and Multer instance
 const server = express();
 const upload = multer();
 
-// Parse JSON and URL-encoded bodies
+// Middleware: parse JSON + URL‐encoded bodies
 server.use(express.json());
 server.use(express.urlencoded({ extended: true }));
 
@@ -47,18 +51,17 @@ server.post(
   upload.single('image'),
   async (req, res) => {
     try {
-      // multer puts the file metadata on req.file
       if (!req.file) {
         return res.status(400).json({ error: 'No file uploaded' });
       }
 
-      // Replace with your actual model name
+      // Replace with your actual Mongoose model name
       const ClothingModel = mongoose.model('ClothingItem');
 
       const doc = await ClothingModel.create({
         filename: req.file.filename || 'unknown',
         originalName: req.file.originalname || 'unknown',
-        // …add other schema fields here as needed
+        // …other fields as needed
       });
 
       return res.json(doc);
@@ -68,10 +71,10 @@ server.post(
   }
 );
 
-// Mount your Angular Universal SSR handler
+// Mount Angular Universal SSR handler
 server.use(ssrApp());
 
-// If run locally (node src/server.ts), start the HTTP listener
+// If run directly (local dev), start an HTTP server
 if (require.main === module) {
   const port = parseInt(process.env.PORT || '4000', 10);
   server.listen(port, () => {
@@ -79,7 +82,7 @@ if (require.main === module) {
   });
 }
 
-// Export for Vercel’s serverless function
+// Vercel serverless function export
 export default function handler(req, res) {
   server(req, res);
 }
