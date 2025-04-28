@@ -1,5 +1,67 @@
-nav a[routerLink] {
-    cursor: pointer;
+/* Global Page Styling */
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Poppins', sans-serif;
+    background-color: #ffe6f0; /* light pink background */
+    min-height: 100vh;
+  }
+  
+  header {
+    background: #ff69b4;
+    color: white;
+    text-align: center;
+    padding: 20px 0;
+  }
+  
+  nav {
+    background: #9900cc;
+    padding: 10px 0;
+    text-align: center;
+  }
+  
+  nav a {
+    color: white;
+    margin: 0 10px;
+    font-weight: bold;
     text-decoration: none;
+    transition: color 0.3s ease;
+  }
+  
+  nav a:hover {
+    color: #ffe6f0;
+  }
+  
+  footer {
+    background-color: #9900cc;
+    color: white;
+    text-align: center;
+    padding: 10px;
+    margin-top: 20px;
+  }
+  
+  /* Card styling for clothing items, login forms, etc */
+  .card {
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    padding: 20px;
+    margin: 15px;
+  }
+  
+  /* Button styling */
+  .button {
+    background-color: #ff69b4;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    margin-top: 10px;
+    border-radius: 20px;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+  }
+  
+  .button:hover {
+    background-color: #ff1493;
   }
   
