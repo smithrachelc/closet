@@ -1,13 +1,16 @@
 {
   "extends": "./tsconfig.json",
   "compilerOptions": {
+    // ←— puts your compiled server files here
     "outDir": "./dist/server",
     "module": "commonjs",
-    "types": ["node"],
-    "skipLibCheck": true
+    "target": "es2020",
+    "types": ["node"]
   },
-  "include": [
-    "server.ts",
+  "files": [
     "src/main.server.ts"
-  ]
+  ],
+  "angularCompilerOptions": {
+    "entryModule": "./src/app/app.server.module#AppServerModule"
+  }
 }
