@@ -1,13 +1,16 @@
 {
   "extends": "./tsconfig.json",
   "compilerOptions": {
-    "outDir": "./dist/closet-cleanup/server",
+    "outDir": "./closet-cleanup/dist/server",
     "module": "commonjs",
     "types": ["node"]
   },
   "files": [
     "src/main.server.ts"
   ],
+ "exclude": [
+   "src/**/*.spec.ts"
+ ],
   "angularCompilerOptions": {
     "entryModule": "./src/app/app.server.module#AppServerModule"
   }

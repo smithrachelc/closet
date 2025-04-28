@@ -7,18 +7,18 @@
       "config": { "distDir": "dist/closet-cleanup/browser" }
     },
     {
-      "src": "src/server.ts",
+      "src": "server.ts",
       "use": "@vercel/node"
     }
   ],
   "routes": [
     {
-      "src": "/(.*\\.(js|css|json|png|jpg|jpeg|svg|ico|map))",
+      "src": "/(.*\\.(?:js|css|json|png|jpg|jpeg|svg|ico|map))",
       "dest": "/dist/closet-cleanup/browser/$1"
     },
     {
       "src": "/(.*)",
-      "dest": "/src/server.ts"
+      "dest": "server.ts"
     }
   ]
 }

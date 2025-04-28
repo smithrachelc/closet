@@ -4,7 +4,7 @@
   "scripts": {
     "build": "ng build --configuration production",
     "build:server": "ng run closet-cleanup:server:production",
-    "build:ssr": "npm run build && npm run build:server",
+    "build:ssr": "ng build --configuration production && ng run closet-cleanup:server:production",
     "serve:ssr": "node dist/closet-cleanup/server/main.js"
   },
   "dependencies": {
@@ -24,11 +24,11 @@
     "zone.js": "0.13.0"
   },
   "devDependencies": {
-    "@angular-devkit/build-angular": "16.2.10",
-    "@angular/cli": "16.2.10",
+    "@angular-devkit/build-angular": "16.2",
+    "@angular/cli": "16.2",
     "@angular/compiler-cli": "16.2.12",
-    "@nguniversal/express-engine": "16.2.10",
-    "@nguniversal/builders": "16.2.10",
+    "@nguniversal/builders": "^16.2.0",
+    "@nguniversal/express-engine": "^16.2.0",
     "typescript": "5.1.6"
   }
 }
