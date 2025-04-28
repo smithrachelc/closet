@@ -1,11 +1,9 @@
-// tsconfig.server.json
 {
   "extends": "./tsconfig.json",
   "compilerOptions": {
     "outDir": "./dist/closet-cleanup/server",
     "module": "commonjs",
-    "lib": ["es2020"],           // ← no "dom" here
-    "types": ["node", "express"] // ← load both Node & Express defs
+    "types": ["node", "express"]
   },
   "include": [
     "src/main.server.ts",
