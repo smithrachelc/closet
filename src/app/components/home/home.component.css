@@ -1,23 +1,37 @@
-.outfit-card {
-    margin-bottom: 20px;
-    padding: 15px;
-    background: #fff;
-    border-radius: 10px;
-    box-shadow: 0 3px 10px rgba(0,0,0,0.1);
-  }
-  
-  .delete-outfit-btn {
-    margin-top: 10px;
-    padding: 8px 16px;
-    border: none;
-    border-radius: 20px;
-    background-color: #ff6666;
-    color: white;
-    font-weight: bold;
-    cursor: pointer;
-  }
-  
-  .delete-outfit-btn:hover {
-    background-color: #cc0000;
-  }
-  
+.hero-section {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-height: 80vh;
+  background: linear-gradient(to bottom right, #ff69b4, #9900cc); /* pink to purple */
+  color: white;
+  text-align: center;
+  padding: 50px 20px;
+}
+
+.hero-section h1 {
+  font-size: 3rem;
+  margin-bottom: 20px;
+}
+
+.hero-section p {
+  font-size: 1.5rem;
+  margin-bottom: 30px;
+}
+
+.cta-button {
+  background-color: #ff1744;
+  color: white;
+  border: none;
+  padding: 15px 30px;
+  border-radius: 30px;
+  font-size: 1.2rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.cta-button:hover {
+  background-color: #d50000;
+}
