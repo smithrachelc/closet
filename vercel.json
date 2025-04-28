@@ -4,15 +4,21 @@
       {
         "src": "package.json",
         "use": "@vercel/static-build",
-        "config": {
-          "distDir": "dist/closet-cleanup"
-        }
+        "config": { "distDir": "dist/closet-cleanup/browser" }
+      },
+      {
+        "src": "src/server.ts",
+        "use": "@vercel/node"
       }
     ],
     "routes": [
       {
+        "src": "/(.*\\.(?:js|css|json|png|jpg|jpeg|svg|ico|map))",
+        "dest": "/dist/closet-cleanup/browser/$1"
+      },
+      {
         "src": "/(.*)",
-        "dest": "/index.html"
+        "dest": "src/server.ts"
       }
     ]
   }
