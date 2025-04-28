@@ -1,0 +1,59 @@
+/* Base page styles */
+:host {
+    display: block;
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    background-color: #ffe6e6;
+    color: #333;
+  }
+  
+  /* HEADER */
+  header {
+    background: linear-gradient(to right, #ff66b2, #b300b3);
+    padding: 1rem;
+    text-align: center;
+  }
+  
+  header h1 {
+    margin: 0;
+    color: white;
+    font-size: 2.5rem;
+    font-weight: bold;
+  }
+  
+  /* NAVIGATION */
+  nav {
+    margin-top: 0.75rem;
+  }
+  
+  nav a {
+    display: inline-block;
+    background: #ff66b2;
+    color: white;
+    text-decoration: none;
+    padding: 8px 14px;
+    margin: 0 4px;
+    border-radius: 20px;
+    font-size: 0.9rem;
+    font-weight: bold;
+    transition: background 0.3s ease, transform 0.3s ease;
+  }
+  
+  nav a:hover {
+    background: #e6004c;
+    transform: scale(1.05);
+  }
+  
+  /* MAIN OUTLET WRAPPER */
+  main {
+    padding: 1rem;
+    min-height: calc(100vh - 6.5rem); /* header + nav height */
+  }
+  
+  /* ROUTER OUTLET SPACING */
+  router-outlet + * {
+    margin-top: 1rem;
+  }
+  
