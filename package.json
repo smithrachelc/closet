@@ -50,5 +50,6 @@
   "engines": {
     "node": "18.x",
     "npm": "9.x"
-  }
+  },
+  "packageManager": "npm@9.6.7"
 }
