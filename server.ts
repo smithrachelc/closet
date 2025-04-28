@@ -1,31 +1,56 @@
-import * as express from 'express';
-import { readFileSync } from 'fs';
-import { join } from 'path';
+// server.ts
 import 'zone.js/node';
+import * as express from 'express';
+import { join } from 'path';
+import { existsSync } from 'fs';
+import { ngExpressEngine } from '@nguniversal/express-engine';
+import { AppServerModule } from './dist/closet-cleanup/server/main.js';  // ← correct path!!
 
-// this file is the output of your server build
-const { renderApplication, AppComponent, APP_BASE_HREF } =
-  require('./dist/closet-cleanup/server/main.server.js');
+import { APP_BASE_HREF } from '@angular/common';
 
-const app = express();
-const BROWSER_DIST = join(process.cwd(), 'dist/closet-cleanup/browser');
-const template = readFileSync(join(BROWSER_DIST, 'index.html'), 'utf8');
+export function app() {
+  const server = express();
+  const distFolder = join(process.cwd(), 'dist/closet-cleanup/browser');
+  const indexHtml = existsSync(join(distFolder, 'index.original.html'))
+    ? 'index.original.html'
+    : 'index';
 
-app.get('*.*', express.static(BROWSER_DIST, { maxAge: '1y' }));
+  server.engine('html', ngExpressEngine({
+    bootstrap: AppServerModule,
+  }));
+  server.set('view engine', 'html');
+  server.set('views', distFolder);
 
-app.get('*', (req, res) => {
-  renderApplication(AppComponent, {
-    document: template,
-    url: req.url,
-    providers: [
-      { provide: APP_BASE_HREF, useValue: req.baseUrl }
-    ]
-  })
-  .then(html => res.send(html))
-  .catch(err => res.status(500).send(err));
-});
+  // serve static files
+  server.get('*.*', express.static(distFolder, {
+    maxAge: '1y'
+  }));
 
-const port = process.env.PORT || 4000;
-app.listen(port, () =>
-  console.log(`✔️  SSR ready on http://localhost:${port}`)
-);
+  // all regular routes use the Universal engine
+  server.get('*', (req, res) => {
+    res.render(indexHtml, {
+      req,
+      providers: [
+        { provide: APP_BASE_HREF, useValue: req.baseUrl }
+      ]
+    });
+  });
+
+  return server;
+}
+
+function run() {
+  const port = process.env.PORT || 4000;
+  app().listen(port, () => {
+    console.log(`Listening on http://localhost:${port}`);
+  });
+}
+
+declare const __non_webpack_require__: any;
+const mainModule = typeof __non_webpack_require__ !== 'undefined'
+  ? __non_webpack_require__.main
+  : require.main;
+const moduleFilename = mainModule && mainModule.filename || '';
+if (moduleFilename === __filename || moduleFilename.includes('iisnode')) {
+  run();
+}

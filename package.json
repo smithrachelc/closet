@@ -3,6 +3,7 @@
   "version": "0.0.0",
   "scripts": {
     "build": "ng build --configuration production",
+    "vercel-build": "npm run build",
     "build:server": "ng run closet-cleanup:server:production",
     "build:ssr": "ng build --configuration production && ng run closet-cleanup:server:production",
     "serve:ssr": "node dist/closet-cleanup/server/main.js"
