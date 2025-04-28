@@ -1,67 +1,103 @@
-/* Global Page Styling */
 body {
+    font-family: 'Arial', sans-serif;
     margin: 0;
     padding: 0;
-    font-family: 'Poppins', sans-serif;
-    background-color: #ffe6f0; /* light pink background */
-    min-height: 100vh;
-  }
-  
-  header {
-    background: #ff69b4;
+    box-sizing: border-box;
+    background-color: #ffe6e6;
+    color: #333;
+}
+
+header {
+    background-color: #ff66b2;
+    color: white;
+    padding: 20px;
+    text-align: center;
+}
+
+nav {
+    display: flex;
+    justify-content: center;
+    background: #b300b3;
+    padding: 10px 0;
+}
+
+nav a {
+    color: white;
+    margin: 0 15px;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+nav a:hover {
+    text-decoration: underline;
+}
+
+.hero {
+    background: linear-gradient(to right, #ff66b2, #b300b3);
+    height: 60vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    text-align: center;
+}
+
+.hero h1 {
+    font-size: 3rem;
+}
+
+.hero p {
+    font-size: 1.5rem;
+    margin: 20px 0;
+}
+
+.hero button {
+    padding: 15px 30px;
+    background: #e6004c;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 1rem;
+    cursor: pointer;
+}
+
+.hero button:hover {
+    background: #cc0044;
+}
+
+.section {
+    padding: 50px;
+    text-align: center;
+}
+
+.features {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
+
+.feature {
+    flex: 1 1 calc(25% - 40px);
+    margin: 20px;
+    padding: 20px;
+    background: white;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+}
+
+footer {
+    background: #b300b3;
     color: white;
     text-align: center;
     padding: 20px 0;
-  }
-  
-  nav {
-    background: #9900cc;
-    padding: 10px 0;
-    text-align: center;
-  }
-  
-  nav a {
-    color: white;
-    margin: 0 10px;
-    font-weight: bold;
-    text-decoration: none;
-    transition: color 0.3s ease;
-  }
-  
-  nav a:hover {
-    color: #ffe6f0;
-  }
-  
-  footer {
-    background-color: #9900cc;
-    color: white;
-    text-align: center;
-    padding: 10px;
     margin-top: 20px;
-  }
-  
-  /* Card styling for clothing items, login forms, etc */
-  .card {
-    background: white;
-    border-radius: 12px;
-    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-    padding: 20px;
-    margin: 15px;
-  }
-  
-  /* Button styling */
-  .button {
-    background-color: #ff69b4;
-    color: white;
-    border: none;
-    padding: 10px 20px;
-    margin-top: 10px;
-    border-radius: 20px;
-    font-weight: bold;
-    transition: background-color 0.3s ease;
-  }
-  
-  .button:hover {
-    background-color: #ff1493;
-  }
-  
+}
+
+footer a {
+    color: #ff66b2;
+    text-decoration: none;
+}
+
+footer a:hover {
+    text-decoration: underline;
+}
