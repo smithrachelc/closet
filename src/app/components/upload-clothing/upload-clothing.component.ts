@@ -28,7 +28,7 @@ export class UploadClothingComponent {
     if (file) {
       this.selectedImageFile = file;
 
-      // For preview
+      // For image preview
       const reader = new FileReader();
       reader.onload = () => {
         this.imageDataUrl = reader.result as string;
@@ -40,6 +40,7 @@ export class UploadClothingComponent {
   uploadClothing(): void {
     if (!this.clothingName.trim() || !this.clothingCategory || !this.selectedImageFile) {
       this.errorMessage = 'All fields are required.';
+      this.successMessage = '';
       return;
     }
 
@@ -49,15 +50,16 @@ export class UploadClothingComponent {
     formData.append('image', this.selectedImageFile);
 
     this.clothingService.addClothingItem(formData).subscribe({
-      next: response => {
+      next: (response) => {
         this.successMessage = 'Clothing item uploaded successfully!';
         this.errorMessage = '';
+        // Reset form
         this.clothingName = '';
         this.clothingCategory = '';
         this.selectedImageFile = null;
         this.imageDataUrl = null;
       },
-      error: err => {
+      error: (err) => {
         console.error('Upload error:', err);
         this.errorMessage = 'Upload failed. Please try again.';
         this.successMessage = '';
