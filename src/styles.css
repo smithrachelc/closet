@@ -1,4 +1,5 @@
-nav a, button {
+nav a[routerLink] {
     cursor: pointer;
+    text-decoration: none;
   }
   
