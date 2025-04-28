@@ -1,42 +1,39 @@
-/******************************************************************
- * src/server.ts — your Vercel “function” entry
- ******************************************************************/
 import 'zone.js/node';
-import express from 'express';
+import * as express from 'express';
 import { join } from 'path';
-import { existsSync } from 'fs';
 import { ngExpressEngine } from '@nguniversal/express-engine';
+import { AppServerModule } from '../dist/closet-cleanup/server/main';
 import { APP_BASE_HREF } from '@angular/common';
 
-// ←— now points at dist/server/main.server.js
-import { AppServerModule } from '../dist/server/main.server.js';
+export function createServer() {
+  const app = express();
+  const PORT = process.env.PORT || 4000;
+  const BROWSER_DIST = join(process.cwd(), 'dist/closet-cleanup/browser');
 
-const app = express();
+  app.engine('html', ngExpressEngine({
+    bootstrap: AppServerModule,
+  }));
+  app.set('view engine', 'html');
+  app.set('views', BROWSER_DIST);
 
-// your browser build output
-const BROWSER_DIST = join(process.cwd(), 'dist/browser');
-const INDEX_HTML   = existsSync(join(BROWSER_DIST, 'index.original.html'))
-  ? 'index.original.html'
-  : 'index';
+  app.get('*.*', express.static(BROWSER_DIST, {
+    maxAge: '1y'
+  }));
 
-app.engine('html', ngExpressEngine({ bootstrap: AppServerModule }));
-app.set('view engine', 'html');
-app.set('views', BROWSER_DIST);
-
-// serve static assets from the browser build
-app.get('*.*', express.static(BROWSER_DIST, {
-  maxAge: '1y'
-}));
-
-// all other routes render the Universal app
-app.get('*', (req, res) => {
-  res.render(INDEX_HTML, {
-    req,
-    providers: [
-      { provide: APP_BASE_HREF, useValue: req.baseUrl }
-    ]
+  app.get('*', (req, res) => {
+    res.render('index', {
+      req,
+      providers: [
+        { provide: APP_BASE_HREF, useValue: req.baseUrl }
+      ]
+    });
   });
-});
 
-// for @vercel/node
-export default app;
+  return app.listen(PORT, () => {
+    console.log(`Node Express server listening on http://localhost:${PORT}`);
+  });
+}
+
+if (require.main === module) {
+  createServer();
+}

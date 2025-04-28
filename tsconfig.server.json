@@ -1,10 +1,8 @@
 {
   "extends": "./tsconfig.json",
   "compilerOptions": {
-    // ←— puts your compiled server files here
-    "outDir": "./dist/server",
+    "outDir": "./dist/closet-cleanup/server",
     "module": "commonjs",
-    "target": "es2020",
     "types": ["node"]
   },
   "files": [
