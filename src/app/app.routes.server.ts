@@ -1,8 +1,12 @@
-import { RenderMode, ServerRoute } from '@angular/ssr';
+import { NgModule } from '@angular/core';
+import { ServerModule } from '@angular/platform-server';
+import { ngExpressEngine } from '@nguniversal/express-engine'; // Correct SSR import
 
-export const serverRoutes: ServerRoute[] = [
-  {
-    path: '**',
-    renderMode: RenderMode.Prerender
-  }
-];
+@NgModule({
+  imports: [
+    ServerModule,
+    // other imports
+  ],
+  providers: [],
+})
+export class AppServerModule {}
